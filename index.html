@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G. Dinesh Krishan — AI & Machine Learning Engineer</title>
+  <meta name="description" content="Official portfolio of G. Dinesh Krishan - B.E. AI & ML Engineer (CGPA 8.01/10) specializing in Multi-Agent AI, RAG Vector Search, Computer Vision, Fraud Analytics, and Full-Stack Microservices.">
+  <meta name="keywords" content="G. Dinesh Krishan, Dineshkrishan, AI Engineer, Machine Learning, Python, PyTorch, LangChain, React, FastAPI, Dayananda Sagar Academy of Technology and Management, Bengaluru">
+  <meta name="author" content="G. Dinesh Krishan">
+
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- AMBIENT BACKGROUND GLOW ORBS & GRID -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="grid-background"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header>
+    <nav class="navbar" id="navbar">
+      <div class="container nav-container">
+        
+        <!-- Top Left: Logo & Theme Toggle -->
+        <div class="nav-left">
+          <a href="#" class="brand-logo" title="G. Dinesh Krishan Home">
+            <div class="logo-badge">DK</div>
+            <div class="logo-name">G. Dinesh Krishan</div>
+          </a>
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark/Bright Theme" title="Toggle Theme">
+            <i class="fa-solid fa-sun" id="theme-icon"></i>
+          </button>
+        </div>
+
+        <!-- Center Nav Links -->
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Repositories</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Nav Actions -->
+        <div class="nav-right">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Available for Roles</span>
+          </div>
+          <a href="G_Dinesh_Krishan_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm" id="open-resume-btn">
+            <i class="fa-solid fa-file-pdf" style="color:var(--rose)"></i> Resume PDF
+          </a>
+          <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-location-badge">
+            <i class="fa-solid fa-location-dot" style="color:var(--cyan)"></i> Bengaluru, India • Dayananda Sagar Academy of Tech & Mgmt
+          </div>
+
+          <h1 class="hero-title"><span class="gradient-text">G. Dinesh Krishan</span></h1>
+          
+          <div class="hero-subtitle-container">
+            <div class="hero-subtitle gradient-text-cyan">
+              <span id="typed-role">AI & Machine Learning Engineer</span>
+              <span class="typing-cursor"></span>
+            </div>
+          </div>
+
+          <p class="hero-description">
+            B.E. candidate in Artificial Intelligence and Machine Learning (CGPA <strong>8.01 / 10</strong>). Specializing in architecting <strong>Multi-Agent Orchestration Systems</strong>, <strong>RAG PDF Vector Search</strong> engines, <strong>6-Metric Computer Vision forgery algorithms</strong>, financial fraud detection models, and full-stack microservices.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fa-brands fa-github"></i> View Repositories
+            </a>
+            <a href="G_Dinesh_Krishan_Resume.pdf" target="_blank" class="btn btn-secondary">
+              <i class="fa-solid fa-file-pdf"></i> View PDF Resume
+            </a>
+            <button class="btn btn-outline" onclick="openModal('resume-modal')">
+              <i class="fa-solid fa-eye"></i> Quick Preview
+            </button>
+            <button class="btn btn-outline" onclick="copyContactInfo()">
+              <i class="fa-solid fa-envelope"></i> Copy Email
+            </button>
+          </div>
+        </div>
+
+        <!-- Candidate Profile Overview Terminal Card -->
+        <div class="card summary-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <div class="terminal-tabs">
+              <button class="terminal-tab-btn active" id="tab-overview-btn" onclick="switchHeroTab('overview')">Overview</button>
+              <button class="terminal-tab-btn" id="tab-cli-btn" onclick="switchHeroTab('cli')">Interactive CLI</button>
+            </div>
+          </div>
+
+          <div class="summary-body" id="hero-tab-overview">
+            <div class="summary-header-info">
+              <h3>Candidate Profile Overview</h3>
+              <p>B.E. AI & ML Candidate • Class of 2026</p>
+            </div>
+
+            <div class="summary-stats-grid">
+              <div class="stat-box">
+                <div class="stat-val" data-counter="8.01">8.01</div>
+                <div class="stat-lbl">Academic CGPA</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val" data-counter="11">11</div>
+                <div class="stat-lbl">GitHub Repositories</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val" data-counter="2">2</div>
+                <div class="stat-lbl">Traineeship Products</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val" data-counter="5">5</div>
+                <div class="stat-lbl">Certifications</div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:0.6rem; text-transform:uppercase; font-family:var(--font-mono);">Primary Technical Stack:</div>
+              <div class="quick-tech-tags">
+                <span class="tech-pill"><i class="fa-brands fa-python" style="color:#38bdf8"></i> Python</span>
+                <span class="tech-pill"><i class="fa-solid fa-fire" style="color:#f97316"></i> PyTorch</span>
+                <span class="tech-pill"><i class="fa-solid fa-brain" style="color:#a855f7"></i> LangChain & FAISS</span>
+                <span class="tech-pill"><i class="fa-brands fa-react" style="color:#61dafb"></i> React</span>
+                <span class="tech-pill"><i class="fa-solid fa-bolt" style="color:#10b981"></i> FastAPI</span>
+                <span class="tech-pill"><i class="fa-solid fa-pepper-hot" style="color:#f43f5e"></i> Flask</span>
+                <span class="tech-pill"><i class="fa-solid fa-database" style="color:#38bdf8"></i> MongoDB & SQL</span>
+                <span class="tech-pill"><i class="fa-brands fa-aws" style="color:#ff9900"></i> Cloud GCP / AWS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="terminal-cli-view" id="hero-tab-cli" style="display:none;">
+            <div class="terminal-line">
+              <span class="prompt-sym">dinesh@ai-engineer:~$</span>
+              <span class="cmd-text">cat engineer_profile.json</span>
+            </div>
+            <div class="out-text">
+              {<br>
+              &nbsp;&nbsp;<span class="hl">"name"</span>: "G. Dinesh Krishan",<br>
+              &nbsp;&nbsp;<span class="hl">"degree"</span>: "B.E. Artificial Intelligence & Machine Learning",<br>
+              &nbsp;&nbsp;<span class="hl">"cgpa"</span>: "8.01 / 10",<br>
+              &nbsp;&nbsp;<span class="hl">"location"</span>: "Bengaluru, India",<br>
+              &nbsp;&nbsp;<span class="hl">"focus"</span>: ["Multi-Agent AI", "RAG Systems", "Computer Vision", "Full-Stack"]<br>
+              }
+            </div>
+            <div class="terminal-line" style="margin-top:0.4rem;">
+              <span class="prompt-sym">dinesh@ai-engineer:~$</span>
+              <span class="cmd-text" id="cli-typed-cmd">status --hiring</span>
+            </div>
+            <div class="out-text" id="cli-output">
+              <span class="hl">[STATUS 200]</span> Ready for full-time Software & AI Engineering roles!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & EDUCATION SECTION -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">EDUCATION</span>
+          <h2 class="section-title">Academic Background & Qualifications</h2>
+          <p class="section-description">
+            Formal training in Artificial Intelligence, Machine Learning, and Computer Science fundamentals.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card edu-card">
+            <div class="edu-header">
+              <div>
+                <h3 class="edu-title">Dayananda Sagar Academy of Technology and Management</h3>
+                <div class="edu-degree">B.E. in Artificial Intelligence and Machine Learning</div>
+              </div>
+              <span class="edu-date"><i class="fa-regular fa-calendar"></i> Dec 2022 – June 2026</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Location: Bengaluru, India • Cumulative Grade Point Average: <strong style="color:var(--cyan)">8.01 / 10</strong>
+            </p>
+
+            <div>
+              <h4 style="font-size: 0.85rem; color: var(--cyan); margin-bottom: 0.5rem; font-family: var(--font-mono); text-transform:uppercase;">Key Coursework:</h4>
+              <div class="course-grid">
+                <span class="course-badge">Data Structures & Algorithms</span>
+                <span class="course-badge">DBMS (SQL & MongoDB)</span>
+                <span class="course-badge">Software Engineering</span>
+                <span class="course-badge">Operating Systems</span>
+                <span class="course-badge">Computer Networks</span>
+                <span class="course-badge">OOPs in Java</span>
+                <span class="course-badge">Machine Learning</span>
+                <span class="course-badge">Generative AI</span>
+                <span class="course-badge">Natural Language Processing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card edu-card">
+            <h3 class="edu-title"><i class="fa-solid fa-bullseye" style="color:var(--cyan)"></i> Technical Focus & Domain Strengths</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65;">
+              Seeking full-time Software Engineering and AI/ML Engineering roles upon graduation in 2026.
+            </p>
+            <ul class="timeline-bullets">
+              <li><strong>AI & RAG Systems:</strong> Architected FAISS vector store indexing and semantic search pipelines connected with LLMs via OpenRouter and HuggingFace.</li>
+              <li><strong>Computer Vision Algorithms:</strong> Designed 6-metric signature forgery detection matrix engines and MediaPipe hand gesture recognition models.</li>
+              <li><strong>Full-Stack Web Engineering:</strong> Built FastAPI microservices, React UI frontends, and cloud deployment pipelines on GCP/AWS.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS MATRIX -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">SKILLS</span>
+          <h2 class="section-title">Technical Expertise Matrix</h2>
+          <p class="section-description">
+            Categorized technical stack based on academic coursework, software traineeship, and completed AI engineering projects.
+          </p>
+        </div>
+
+        <div class="skills-filter">
+          <button class="filter-btn active" data-filter="all">All Stack</button>
+          <button class="filter-btn" data-filter="languages">Programming Languages</button>
+          <button class="filter-btn" data-filter="aiml">AI, ML & Data Science</button>
+          <button class="filter-btn" data-filter="web">Web & Frameworks</button>
+          <button class="filter-btn" data-filter="cloud">Databases & Cloud/DevOps</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Programming Languages -->
+          <div class="card skill-category-card" data-category="languages">
+            <div class="cat-header">
+              <h3 class="cat-title"><i class="fa-solid fa-code" style="color:var(--cyan)"></i> Programming Languages</h3>
+            </div>
+            <div class="skill-list">
+              <span class="skill-badge"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="skill-badge"><i class="fa-brands fa-java"></i> Java</span>
+              <span class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span class="skill-badge"><i class="fa-solid fa-c"></i> C</span>
+              <span class="skill-badge"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="skill-badge"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+              <span class="skill-badge"><i class="fa-brands fa-android"></i> Kotlin</span>
+            </div>
+          </div>
+
+          <!-- AI/ML & Data Science -->
+          <div class="card skill-category-card" data-category="aiml">
+            <div class="cat-header">
+              <h3 class="cat-title"><i class="fa-solid fa-brain" style="color:var(--cyan)"></i> AI, ML & Data Science</h3>
+            </div>
+            <div class="skill-list">
+              <span class="skill-badge"><i class="fa-solid fa-fire"></i> PyTorch</span>
+              <span class="skill-badge"><i class="fa-solid fa-chart-line"></i> Scikit-Learn</span>
+              <span class="skill-badge"><i class="fa-solid fa-calculator"></i> NumPy</span>
+              <span class="skill-badge"><i class="fa-solid fa-table"></i> Pandas</span>
+              <span class="skill-badge"><i class="fa-solid fa-link"></i> LangChain</span>
+              <span class="skill-badge"><i class="fa-solid fa-database"></i> FAISS Vector Store</span>
+              <span class="skill-badge"><i class="fa-solid fa-eye"></i> OpenCV & MediaPipe</span>
+              <span class="skill-badge"><i class="fa-solid fa-diagram-project"></i> Multi-Agent Systems</span>
+              <span class="skill-badge"><i class="fa-solid fa-robot"></i> HuggingFace Embeddings</span>
+            </div>
+          </div>
+
+          <!-- Web & Frameworks -->
+          <div class="card skill-category-card" data-category="web">
+            <div class="cat-header">
+              <h3 class="cat-title"><i class="fa-solid fa-globe" style="color:var(--cyan)"></i> Web & Frameworks</h3>
+            </div>
+            <div class="skill-list">
+              <span class="skill-badge"><i class="fa-brands fa-react"></i> React.js</span>
+              <span class="skill-badge"><i class="fa-solid fa-bolt"></i> Vite</span>
+              <span class="skill-badge"><i class="fa-solid fa-server"></i> FastAPI</span>
+              <span class="skill-badge"><i class="fa-solid fa-pepper-hot"></i> Flask</span>
+              <span class="skill-badge"><i class="fa-solid fa-display"></i> Streamlit</span>
+              <span class="skill-badge"><i class="fa-solid fa-network-wired"></i> RESTful APIs</span>
+              <span class="skill-badge"><i class="fa-brands fa-android"></i> Jetpack Compose</span>
+              <span class="skill-badge"><i class="fa-solid fa-gear"></i> Chaquopy</span>
+            </div>
+          </div>
+
+          <!-- Databases & Cloud -->
+          <div class="card skill-category-card" data-category="cloud">
+            <div class="cat-header">
+              <h3 class="cat-title"><i class="fa-solid fa-database" style="color:var(--cyan)"></i> Databases & Cloud/DevOps</h3>
+            </div>
+            <div class="skill-list">
+              <span class="skill-badge"><i class="fa-solid fa-database"></i> SQL</span>
+              <span class="skill-badge"><i class="fa-solid fa-leaf"></i> MongoDB</span>
+              <span class="skill-badge"><i class="fa-brands fa-google"></i> Google Cloud (GCP)</span>
+              <span class="skill-badge"><i class="fa-brands fa-aws"></i> AWS Cloud</span>
+              <span class="skill-badge"><i class="fa-brands fa-docker"></i> Docker</span>
+              <span class="skill-badge"><i class="fa-solid fa-infinity"></i> CI/CD Pipelines</span>
+              <span class="skill-badge"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+              <span class="skill-badge"><i class="fa-solid fa-code"></i> VS Code & IntelliJ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">EXPERIENCE</span>
+          <h2 class="section-title">Software Development Traineeship</h2>
+          <p class="section-description">
+            Practical corporate experience building production web applications, backend APIs, and cloud workflows.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="card timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="company-name">CBAServices Private Limited</h3>
+                <div class="role-title">Software Development Trainee</div>
+              </div>
+              <span class="timeline-date"><i class="fa-regular fa-calendar"></i> Jan 2026 – Jul 2026</span>
+            </div>
+
+            <ul class="timeline-bullets">
+              <li>
+                <strong>Developed "RevPlay":</strong> Built a music streaming platform featuring a RESTful API backend and a React-based UI for seamless music browsing and playback.
+              </li>
+              <li>
+                <strong>Built "AssetFlow Management":</strong> Built a financial intelligence platform using FastAPI, React/Vite, and MongoDB, integrated with an Ollama-powered AI advisor for automated asset tracking.
+              </li>
+              <li>
+                <strong>Cloud Deployment & Database Pipelines:</strong> Implemented CRUD operations, MongoDB data workflows, and orchestrated cloud deployment pipelines on GCP and AWS.
+              </li>
+            </ul>
+
+            <div class="intern-projects">
+              <div class="intern-project-box">
+                <h5><a href="https://github.com/Dineshkrishan/revplay" target="_blank" style="color:inherit; text-decoration:none;"><i class="fa-solid fa-music"></i> RevPlay Streaming Platform <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i></a></h5>
+                <p>RESTful API backend + React.js frontend for high-throughput music browsing.</p>
+              </div>
+              <div class="intern-project-box">
+                <h5><a href="https://github.com/Dineshkrishan/Asset_flow_management" target="_blank" style="color:inherit; text-decoration:none;"><i class="fa-solid fa-chart-line"></i> AssetFlow Financial AI <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i></a></h5>
+                <p>FastAPI backend + Ollama LLM advisor + MongoDB asset management.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB REPOSITORIES SHOWCASE (11 REPOS) -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">REPOSITORIES</span>
+          <h2 class="section-title">Featured GitHub Repositories</h2>
+          <p class="section-description">
+            11 public engineering repositories sourced directly from <a href="https://github.com/Dineshkrishan" target="_blank" style="color:var(--cyan); font-weight:700;"><i class="fa-brands fa-github"></i> github.com/Dineshkrishan</a>.
+          </p>
+        </div>
+
+        <!-- Category Filter Tabs for Repositories -->
+        <div class="skills-filter" style="margin-bottom:2.25rem;">
+          <button class="filter-btn active" data-repo-filter="all">All Repositories</button>
+          <button class="filter-btn" data-repo-filter="aiml">AI & Machine Learning</button>
+          <button class="filter-btn" data-repo-filter="cv">Computer Vision</button>
+          <button class="filter-btn" data-repo-filter="web">Full-Stack & Web</button>
+        </div>
+
+        <div class="projects-grid" id="repos-grid">
+          
+          <!-- REPO 1: Signature Recognition System -->
+          <div class="card project-card" data-repo-category="cv">
+            <div class="project-thumb">
+              <img src="images/signature-recognition.png" alt="Signature Recognition Preview">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/Image-processing" target="_blank">Signature Recognition System</a>
+              </h3>
+              <p class="project-desc">
+                Signature forgery detection system (Flask web app + native Android Kotlin via Chaquopy) using a <strong>6-metric similarity engine</strong> (MSE, SSIM, template matching, histogram correlation, HOG, NMI across 16×16 grid).
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Kotlin</span>
+                <span class="metric-pill">Python</span>
+                <span class="metric-pill">OpenCV</span>
+                <span class="metric-pill">Flask</span>
+                <span class="metric-pill">Chaquopy</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/Image-processing" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+                <button class="btn btn-primary btn-sm" onclick="openProjectDemo('signatech')">
+                  <i class="fa-solid fa-sliders"></i> Test Demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 2: Multi-Agent Investment System -->
+          <div class="card project-card" data-repo-category="aiml">
+            <div class="project-thumb">
+              <img src="images/investiq.png" alt="Multi-Agent Investment Preview">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/Orchestrated-Multi-Agent-Investment-System" target="_blank">Multi-Agent Investment System</a>
+              </h3>
+              <p class="project-desc">
+                Engineered a <strong>3-agent orchestration framework</strong> in Python that autonomously monitors market trends, strategizes, and generates investment predictions using real-time financial APIs and collaborative decision-making modules.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Python</span>
+                <span class="metric-pill">Multi-Agent AI</span>
+                <span class="metric-pill">Pandas</span>
+                <span class="metric-pill">NumPy</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/Orchestrated-Multi-Agent-Investment-System" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+                <button class="btn btn-primary btn-sm" onclick="openProjectDemo('investiq')">
+                  <i class="fa-solid fa-diagram-project"></i> Workflow Demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 3: RAG PDF Chatbot -->
+          <div class="card project-card" data-repo-category="aiml">
+            <div class="project-thumb">
+              <img src="images/rag-chatbot.png" alt="RAG PDF Chatbot Preview">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/RAG" target="_blank">RAG PDF Chatbot</a>
+              </h3>
+              <p class="project-desc">
+                RAG-based PDF chatbot supporting document uploads up to <strong>200MB</strong> using LangChain & FAISS vector search, HuggingFace embeddings (`all-MiniLM-L6-v2`), and Mistral 7B via OpenRouter API with Streamlit.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Python</span>
+                <span class="metric-pill">LangChain</span>
+                <span class="metric-pill">FAISS Vector DB</span>
+                <span class="metric-pill">Streamlit</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/RAG" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+                <button class="btn btn-primary btn-sm" onclick="openProjectDemo('ragchatbot')">
+                  <i class="fa-solid fa-comments"></i> Live Chat Demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 4: Fraud Detection System -->
+          <div class="card project-card" data-repo-category="aiml">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(6,182,212,0.15), rgba(139,92,246,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--cyan);">
+                <i class="fa-solid fa-shield-halved" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Anomaly Analytics Matrix</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/Fraud-Detection-System-for-Financial-Transactions" target="_blank">Fraud Detection System</a>
+              </h3>
+              <p class="project-desc">
+                Machine learning transaction classifier designed to detect fraudulent financial activity using anomaly detection algorithms, feature engineering, and class-imbalance balancing.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Jupyter Notebook</span>
+                <span class="metric-pill">Scikit-Learn</span>
+                <span class="metric-pill">Fraud Analytics</span>
+                <span class="metric-pill">Pandas</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/Fraud-Detection-System-for-Financial-Transactions" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 5: revplay -->
+          <div class="card project-card" data-repo-category="web">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(99,102,241,0.15), rgba(236,72,153,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--indigo);">
+                <i class="fa-solid fa-music" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Streaming API Platform</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/revplay" target="_blank">revplay Music Platform</a>
+              </h3>
+              <p class="project-desc">
+                Music streaming platform developed during internship featuring a RESTful API backend and a React-based UI for seamless music browsing, user search, and playback.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">JavaScript</span>
+                <span class="metric-pill">React.js</span>
+                <span class="metric-pill">RESTful API</span>
+                <span class="metric-pill">Traineeship</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/revplay" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 6: Asset_flow_management -->
+          <div class="card project-card" data-repo-category="web">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--emerald);">
+                <i class="fa-solid fa-chart-line" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Financial AI Intelligence</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/Asset_flow_management" target="_blank">Asset Flow Management</a>
+              </h3>
+              <p class="project-desc">
+                Financial intelligence platform built using FastAPI, React/Vite, and MongoDB, integrated with a local Ollama LLM AI advisor for automated asset tracking and insights.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">JavaScript</span>
+                <span class="metric-pill">FastAPI</span>
+                <span class="metric-pill">MongoDB</span>
+                <span class="metric-pill">Ollama LLM</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/Asset_flow_management" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 7: AI-Resume-Analyzer-main -->
+          <div class="card project-card" data-repo-category="aiml">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(168,85,247,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--blue);">
+                <i class="fa-solid fa-file-contract" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">ATS NLP Parsing Engine</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/AI-Resume-Analyzer-main" target="_blank">AI Resume Analyzer</a>
+              </h3>
+              <p class="project-desc">
+                Natural Language Processing pipeline that parses PDF candidate resumes, extracts core skill entities, evaluates candidate qualifications against job specs, and provides ATS feedback via Streamlit.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Python</span>
+                <span class="metric-pill">NLP</span>
+                <span class="metric-pill">Streamlit</span>
+                <span class="metric-pill">PyPDF2</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/AI-Resume-Analyzer-main" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 8: Hand-gesture-recognition-using-mediapipe-main -->
+          <div class="card project-card" data-repo-category="cv">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(6,182,212,0.15), rgba(16,185,129,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--cyan);">
+                <i class="fa-solid fa-hand" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Real-Time MediaPipe Tracking</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/Hand-gesture-recognition-using-mediapipe-main" target="_blank">Hand Gesture Recognition</a>
+              </h3>
+              <p class="project-desc">
+                Computer vision hand gesture recognition system utilizing Google MediaPipe hand landmark tracking and OpenCV for real-time video gesture classification.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Jupyter Notebook</span>
+                <span class="metric-pill">MediaPipe</span>
+                <span class="metric-pill">OpenCV</span>
+                <span class="metric-pill">Real-Time CV</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/Hand-gesture-recognition-using-mediapipe-main" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 9: ML-projects -->
+          <div class="card project-card" data-repo-category="aiml">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--amber);">
+                <i class="fa-solid fa-car" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Predictive Valuation Models</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/ML-projects" target="_blank">ML Predictive Models</a>
+              </h3>
+              <p class="project-desc">
+                Machine learning predictive models featuring car scrap price estimation algorithms and land property valuation models factoring local tax metrics.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Jupyter Notebook</span>
+                <span class="metric-pill">Scikit-Learn</span>
+                <span class="metric-pill">Regression Models</span>
+                <span class="metric-pill">Pandas</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/ML-projects" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 10: To-do-list-application -->
+          <div class="card project-card" data-repo-category="web">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:var(--blue);">
+                <i class="fa-solid fa-list-check" style="font-size:2.8rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Java OOP Architecture</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/To-do-list-application" target="_blank">To-Do List Java App</a>
+              </h3>
+              <p class="project-desc">
+                Task lifecycle application built in Java demonstrating Object-Oriented Programming (OOP) principles, structured data handling, and clean software design.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">Java</span>
+                <span class="metric-pill">OOPs</span>
+                <span class="metric-pill">Data Structures</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/To-do-list-application" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPO 11: AWS -->
+          <div class="card project-card" data-repo-category="web">
+            <div class="project-thumb">
+              <div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(255,153,0,0.15), rgba(245,158,11,0.15)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; color:#ff9900;">
+                <i class="fa-brands fa-aws" style="font-size:3.2rem;"></i>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">Cloud Infra Workflows</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="https://github.com/Dineshkrishan/AWS" target="_blank">AWS Cloud Architecture</a>
+              </h3>
+              <p class="project-desc">
+                Cloud infrastructure configurations, deployment workflows, and container management resources built for cloud-native web applications.
+              </p>
+              <div class="project-metrics">
+                <span class="metric-pill">AWS</span>
+                <span class="metric-pill">Cloud Infrastructure</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/Dineshkrishan/AWS" target="_blank" class="btn btn-outline btn-sm">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section id="certifications">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CERTIFICATIONS</span>
+          <h2 class="section-title">Industry Credentials & Certifications</h2>
+          <p class="section-description">
+            Professional certifications completed across Cloud AI, Deep Learning, Large Language Models, and UI/UX Design.
+          </p>
+        </div>
+
+        <div class="certs-grid">
+          <div class="card cert-card">
+            <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
+            <div class="cert-info">
+              <h4>Introduction to AI & ML on GCP</h4>
+              <p>Google Cloud Platform</p>
+            </div>
+          </div>
+
+          <div class="card cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div class="cert-info">
+              <h4>Getting Started with Deep Learning</h4>
+              <p>Nvidia DLI</p>
+            </div>
+          </div>
+
+          <div class="card cert-card">
+            <div class="cert-icon"><i class="fa-brands fa-aws"></i></div>
+            <div class="cert-info">
+              <h4>Building Language Models on AWS</h4>
+              <p>Amazon Web Services</p>
+            </div>
+          </div>
+
+          <div class="card cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="cert-info">
+              <h4>Basics of Python & Python Foundation</h4>
+              <p>Infosys Springboard</p>
+            </div>
+          </div>
+
+          <div class="card cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+            <div class="cert-info">
+              <h4>UI/UX Design Essentials</h4>
+              <p>Udemy Certified</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION WITH SOCIAL HYPERLINKS -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CONTACT</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-description">
+            <span class="open-to-wrapper">
+              <button class="open-to-trigger" id="open-to-trigger" aria-label="Open to roles dropdown" aria-expanded="false">
+                <i class="fa-solid fa-briefcase"></i> Open to:
+                <span class="role-count">5</span>
+              </button>
+              <div class="open-to-dropdown" id="open-to-dropdown" role="menu">
+                <div class="open-to-item" data-role="Software Engineer" role="menuitem" tabindex="0">
+                  <i class="fa-solid fa-laptop-code"></i> Software Engineer
+                </div>
+                <div class="open-to-item" data-role="Full-Stack Developer" role="menuitem" tabindex="0">
+                  <i class="fa-solid fa-globe"></i> Full-Stack Developer
+                </div>
+                <div class="open-to-item" data-role="Backend Developer" role="menuitem" tabindex="0">
+                  <i class="fa-solid fa-server"></i> Backend Developer
+                </div>
+                <div class="open-to-item" data-role="AI/ML Engineer" role="menuitem" tabindex="0">
+                  <i class="fa-solid fa-brain"></i> AI/ML Engineer
+                </div>
+                <div class="open-to-item" data-role="Data/AI Engineer" role="menuitem" tabindex="0">
+                  <i class="fa-solid fa-chart-line"></i> Data/AI Engineer
+                </div>
+              </div>
+            </span>
+            <span style="margin-left:0.4rem;">— full-time roles.</span>
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-info-card">
+            <h3>Contact Details</h3>
+            <p style="color:var(--text-muted); font-size:0.925rem;">
+              Direct lines of communication for recruitment officers, engineering managers, and technical interviewers.
+            </p>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="contact-details">
+                <h5>Email Address</h5>
+                <a href="mailto:dineshkrishan1981@gmail.com">dineshkrishan1981@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="contact-details">
+                <h5>Phone Number</h5>
+                <a href="tel:+918143155225">+91 8143155225</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="contact-details">
+                <h5>Location</h5>
+                <p>Bengaluru, India</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 0.5rem;">
+              <h5 style="font-size:0.775rem; color:var(--text-dim); text-transform:uppercase; margin-bottom:0.75rem; font-family:var(--font-mono);">Profiles & Social Hyperlinks</h5>
+              <div class="social-links">
+                <a href="https://www.linkedin.com/in/dinesh-krishan/" target="_blank" class="social-btn" title="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/Dineshkrishan" target="_blank" class="social-btn" title="GitHub Repositories"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.hackerrank.com/profile/dineshkrishan191" target="_blank" class="social-btn" title="HackerRank Profile"><i class="fa-brands fa-hackerrank"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-form-card">
+            <form id="portfolio-contact-form" onsubmit="handleFormSubmit(event)">
+              <h3 style="margin-bottom:1rem; font-size:1.2rem;">Send a Direct Message</h3>
+              
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-input" placeholder="e.g. Hiring Manager" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="e.g. manager@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <input type="text" class="form-input" placeholder="Role Inquiry / Interview Opportunity" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-textarea" rows="4" placeholder="Hello Dinesh, we would like to schedule an interview for..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="padding: 2.5rem 0; border-top: 1px solid var(--border-subtle); text-align: center; color: var(--text-dim); font-size: 0.875rem; background: var(--bg-main);">
+    <div class="container" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+      <p>© 2026 G. Dinesh Krishan. AI & Machine Learning Engineering Portfolio.</p>
+      <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">
+        Built with HTML5, Custom Glassmorphic CSS3, and Vanilla JavaScript.
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- MODAL 1: INTERACTIVE DEMO SIMULATOR MODAL -->
+  <div class="modal-overlay" id="project-demo-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="demo-modal-title">Interactive Project Demo</h3>
+        <button class="modal-close" onclick="closeModal('project-demo-modal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="demo-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: DIRECT PDF RESUME VIEWER MODAL -->
+  <div class="modal-overlay" id="resume-modal">
+    <div class="modal-card" style="max-width: 960px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-file-pdf" style="color:var(--rose)"></i> G. Dinesh Krishan — Official Attached PDF Resume</h3>
+        <div style="display:flex; gap:0.55rem; align-items:center; flex-wrap:wrap;">
+          <a href="G_Dinesh_Krishan_Resume.pdf" download class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> Download PDF</a>
+          <a href="G_Dinesh_Krishan_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab</a>
+          <button class="modal-close" onclick="closeModal('resume-modal')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <div class="modal-body" style="padding: 1rem;">
+        <div class="pdf-viewer-container">
+          <object data="G_Dinesh_Krishan_Resume.pdf" type="application/pdf" width="100%" height="100%">
+            <iframe src="G_Dinesh_Krishan_Resume.pdf" width="100%" height="100%">
+              <p>Your browser does not support embedding PDF files. You can <a href="G_Dinesh_Krishan_Resume.pdf">download the PDF resume directly</a>.</p>
+            </iframe>
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
