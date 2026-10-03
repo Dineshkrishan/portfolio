@@ -4,15 +4,22 @@ import uuid
 from datetime import datetime
 from typing import List, Dict, Any
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
+# In serverless environments like Vercel, the local filesystem is read-only except /tmp
+if os.environ.get("VERCEL"):
+    DATA_DIR = os.path.join("/tmp", "data")
+else:
+    DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 MESSAGES_FILE = os.path.join(DATA_DIR, "messages.json")
 
 def ensure_data_dir():
-    if not os.path.exists(DATA_DIR):
-        os.makedirs(DATA_DIR, exist_ok=True)
-    if not os.path.exists(MESSAGES_FILE):
-        with open(MESSAGES_FILE, "w", encoding="utf-8") as f:
-            json.dump([], f, indent=2)
+    try:
+        if not os.path.exists(DATA_DIR):
+            os.makedirs(DATA_DIR, exist_ok=True)
+        if not os.path.exists(MESSAGES_FILE):
+            with open(MESSAGES_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f, indent=2)
+    except OSError:
+        pass
 
 def save_contact_message(name: str, email: str, subject: str, message: str) -> Dict[str, Any]:
     ensure_data_dir()
