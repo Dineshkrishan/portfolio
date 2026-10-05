@@ -802,38 +802,70 @@ async function runAgentOrchestration() {
 }
 
 /* ==========================================================================
-   10. CONTACT FORM SUBMISSION TO FASTAPI BACKEND
+   10. CONTACT FORM — EMAILJS (NO BACKEND REQUIRED)
+   Sends messages directly to dineshkrishan1981@gmail.com via EmailJS.
+   Free tier: 200 emails/month. Setup: https://www.emailjs.com/
    ========================================================================== */
+
+// ─── EmailJS Configuration ───
+// Replace these with your actual EmailJS credentials from https://dashboard.emailjs.com
+const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // Account → API Keys → Public Key
+const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // Email Templates → Template ID
+
+// Initialize EmailJS on page load
+(function initEmailJS() {
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+})();
+
 async function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const inputs = form.querySelectorAll('input, textarea');
-  
-  const payload = {
-    name: inputs[0].value.trim(),
-    email: inputs[1].value.trim(),
-    subject: inputs[2].value.trim(),
-    message: inputs[3].value.trim()
-  };
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const originalHTML = submitBtn.innerHTML;
+
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
 
   try {
-    const res = await fetch(`${API_BASE}/api/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    // Check if EmailJS is configured
+    if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
+      // Fallback: open mailto link if EmailJS is not yet configured
+      const inputs = form.querySelectorAll('input, textarea');
+      const name = inputs[0].value.trim();
+      const email = inputs[1].value.trim();
+      const subject = inputs[2].value.trim();
+      const message = inputs[3].value.trim();
+      
+      const mailtoLink = `mailto:dineshkrishan1981@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+      window.open(mailtoLink, '_blank');
+      showToast('Opening your email client to send the message.', 'info');
+      form.reset();
+      return;
+    }
 
-    if (res.ok) {
-      const data = await res.json();
-      showToast(`Message sent! Reference ID: ${data.id}`, 'success');
+    // Send via EmailJS
+    const result = await emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      form
+    );
+
+    if (result.status === 200) {
+      showToast('Message sent successfully! Dinesh will respond shortly.', 'success');
       form.reset();
     } else {
-      showToast('Form submission failed. Please try again.', 'info');
+      showToast('Failed to send message. Please try again or email directly.', 'info');
     }
   } catch (err) {
-    console.error("Contact API error:", err);
-    showToast('Message sent! Dinesh will respond to your inquiry shortly.', 'success');
-    form.reset();
+    console.error("EmailJS error:", err);
+    showToast('Failed to send. Please email dineshkrishan1981@gmail.com directly.', 'info');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalHTML;
   }
 }
 
