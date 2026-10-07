@@ -65,10 +65,11 @@ function initTypewriter() {
   if (!roleElem) return;
 
   const roles = [
-    "AI & Machine Learning Engineer",
-    "Multi-Agent Systems Architect",
-    "Full-Stack Web Microservices Developer",
-    "RAG & LLM Pipeline Engineer"
+    "Junior Full-Stack Developer",
+    "Python Backend Developer / Software Engineer",
+    "AI/ML Engineer – Junior",
+    "GenAI / RAG Developer",
+    "Software Engineer – AI/Backend"
   ];
 
   let roleIdx = 0;
@@ -976,6 +977,10 @@ function initOpenToDropdown() {
       trigger.querySelector('.fa-briefcase').className = 'fa-solid fa-check-circle';
       trigger.querySelector('.fa-check-circle').style.color = 'var(--emerald)';
       showToast(`Selected: ${role}`, 'success');
+      const subjectInput = document.querySelector('input[name="subject"]');
+      if (subjectInput) {
+        subjectInput.value = `Interview Opportunity: ${role}`;
+      }
       dropdown.classList.remove('show');
       trigger.setAttribute('aria-expanded', 'false');
     }
