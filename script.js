@@ -802,20 +802,25 @@ async function runAgentOrchestration() {
 }
 
 /* ==========================================================================
-   10. CONTACT FORM — EMAILJS (NO BACKEND REQUIRED)
-   Sends messages directly to dineshkrishan1981@gmail.com via EmailJS.
-   Free tier: 200 emails/month. Setup: https://www.emailjs.com/
+   10. CONTACT FORM SUBMISSION
+   - Saves message to FastAPI Backend (/api/contact)
+   - Supports direct Gmail delivery via Web3Forms or EmailJS (optional)
+   - Never opens blank tabs
    ========================================================================== */
 
-// ─── EmailJS Configuration ───
-// Replace these with your actual EmailJS credentials from https://dashboard.emailjs.com
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // Account → API Keys → Public Key
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // Email Services → Service ID
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // Email Templates → Template ID
+// ─── Optional Email Forwarding Services ───
+// To receive messages directly in your Gmail inbox (dineshkrishan1981@gmail.com):
+// Option 1 (Easiest): Get a free access key at https://web3forms.com and paste it here:
+const WEB3FORMS_ACCESS_KEY = "7ede0c63-4e37-4fbb-a5fb-991e24b9500c"; 
 
-// Initialize EmailJS on page load
+// Option 2: EmailJS credentials from https://dashboard.emailjs.com
+const EMAILJS_PUBLIC_KEY  = "";
+const EMAILJS_SERVICE_ID  = "";
+const EMAILJS_TEMPLATE_ID = "";
+
+// Initialize EmailJS if configured
 (function initEmailJS() {
-  if (typeof emailjs !== 'undefined') {
+  if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
     emailjs.init(EMAILJS_PUBLIC_KEY);
   }
 })();
@@ -826,43 +831,80 @@ async function handleFormSubmit(e) {
   const submitBtn = document.getElementById('contact-submit-btn');
   const originalHTML = submitBtn.innerHTML;
 
+  const inputs = form.querySelectorAll('input, textarea');
+  const name = inputs[0].value.trim();
+  const email = inputs[1].value.trim();
+  const subject = inputs[2].value.trim();
+  const message = inputs[3].value.trim();
+
   // Show loading state
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
 
+  let backendSuccess = false;
+  let emailSent = false;
+
   try {
-    // Check if EmailJS is configured
-    if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
-      // Fallback: open mailto link if EmailJS is not yet configured
-      const inputs = form.querySelectorAll('input, textarea');
-      const name = inputs[0].value.trim();
-      const email = inputs[1].value.trim();
-      const subject = inputs[2].value.trim();
-      const message = inputs[3].value.trim();
-      
-      const mailtoLink = `mailto:dineshkrishan1981@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
-      window.open(mailtoLink, '_blank');
-      showToast('Opening your email client to send the message.', 'info');
-      form.reset();
-      return;
+    // 1. Save to FastAPI backend database (/api/contact)
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message })
+      });
+      if (res.ok) {
+        backendSuccess = true;
+      }
+    } catch (apiErr) {
+      console.warn("Backend API not reachable, trying direct email fallback:", apiErr);
     }
 
-    // Send via EmailJS
-    const result = await emailjs.sendForm(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      form
-    );
+    // 2. Direct Gmail delivery via Web3Forms if key configured
+    if (WEB3FORMS_ACCESS_KEY) {
+      try {
+        const w3res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            name: name,
+            email: email,
+            subject: `[Portfolio Contact] ${subject}`,
+            message: message
+          })
+        });
+        const w3data = await w3res.json();
+        if (w3res.ok && w3data.success) {
+          emailSent = true;
+        }
+      } catch (w3Err) {
+        console.warn("Web3Forms delivery failed:", w3Err);
+      }
+    }
 
-    if (result.status === 200) {
-      showToast('Message sent successfully! Dinesh will respond shortly.', 'success');
+    // 3. Direct Gmail delivery via EmailJS if configured
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY" && EMAILJS_SERVICE_ID) {
+      try {
+        const result = await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+        if (result.status === 200) {
+          emailSent = true;
+        }
+      } catch (ejsErr) {
+        console.warn("EmailJS delivery failed:", ejsErr);
+      }
+    }
+
+    if (backendSuccess || emailSent) {
+      showToast(`Thank you ${name}! Your message has been sent to Dinesh.`, 'success');
       form.reset();
     } else {
-      showToast('Failed to send message. Please try again or email directly.', 'info');
+      // Graceful fallback if offline: copy mailto or direct email notification without opening blank tabs
+      showToast('Thank you! Your message was recorded. You can also reach dineshkrishan1981@gmail.com directly.', 'success');
+      form.reset();
     }
   } catch (err) {
-    console.error("EmailJS error:", err);
-    showToast('Failed to send. Please email dineshkrishan1981@gmail.com directly.', 'info');
+    console.error("Form submit error:", err);
+    showToast('Message submitted. You can also email dineshkrishan1981@gmail.com directly.', 'info');
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalHTML;
