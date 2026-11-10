@@ -1011,3 +1011,111 @@ function initOpenToDropdown() {
     }
   });
 }
+
+
+/* ==========================================================================
+   PREMIUM DESIGN ENHANCEMENTS — Scroll Reveal & Navbar Scroll State
+   Appended by redesign — zero existing functionality changed.
+   ========================================================================== */
+
+/* --- Navbar scroll state (adds .scrolled class for CSS backdrop upgrade) --- */
+(function initNavbarScrollState() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  function updateNavbar() {
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar(); // run once on load
+})();
+
+/* --- Scroll-reveal: fade-slide-up for cards and section children --- */
+(function initScrollReveal() {
+  // Don't run if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const REVEAL_CLASS = 'sr-visible';
+
+  // Elements to reveal
+  const selectors = [
+    '.card',
+    '.section-header',
+    '.skills-filter',
+    '.filter-btn',
+    '.timeline-bullets li',
+    '.course-badge',
+    '.project-footer',
+    '.cert-card',
+    '.contact-item',
+    '.social-btn',
+  ];
+
+  // Inject CSS once
+  if (!document.getElementById('sr-styles')) {
+    const style = document.createElement('style');
+    style.id = 'sr-styles';
+    style.textContent = `
+      .sr-hidden {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sr-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+      /* Hero is already animated via CSS keyframes — skip it */
+      .hero-content.sr-hidden,
+      .summary-card.sr-hidden {
+        opacity: 1;
+        transform: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Mark elements as hidden initially (except those already in viewport)
+  const allElements = [];
+  selectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      // Skip hero-section children (they have CSS animations)
+      if (el.closest('.hero-section')) return;
+      el.classList.add('sr-hidden');
+      allElements.push(el);
+    });
+  });
+
+  if (!allElements.length) return;
+
+  // Stagger siblings within the same parent
+  function getDelay(el) {
+    const siblings = Array.from(el.parentElement?.children || []);
+    const idx = siblings.indexOf(el);
+    return Math.min(idx * 60, 300); // max 300ms stagger
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = getDelay(el);
+        setTimeout(() => {
+          el.classList.add(REVEAL_CLASS);
+        }, delay);
+        observer.unobserve(el);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  allElements.forEach(el => observer.observe(el));
+})();
